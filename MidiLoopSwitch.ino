@@ -22,6 +22,8 @@
 #define RELAY_3 4
 #define RELAY_4 5
 
+#define MIDI_CHANNEL 1
+
 MIDI_CREATE_DEFAULT_INSTANCE();
 
 void setup() {
@@ -33,10 +35,12 @@ void setup() {
   pinMode(RELAY_4, OUTPUT);
 
   // midi begin
-  MIDI.begin(1);
+  MIDI.begin(MIDI_CHANNEL);
 }
 
 void loop() {
+  MIDI.read();
+  
   // put your main code here, to run repeatedly:
   digitalWrite(RELAY_1, HIGH);
   delay(500);
@@ -55,3 +59,9 @@ void loop() {
   digitalWrite(RELAY_4, LOW);
   delay(500);
 }
+
+void handleProgramChange(byte channel, byte number)
+{
+  
+}
+
