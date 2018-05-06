@@ -27,7 +27,7 @@
 MIDI_CREATE_DEFAULT_INSTANCE();
 
 void setup() {
-  Serial.begin(9600);
+  //Serial.begin(9600);
 
   pinMode(RELAY_1, OUTPUT);
   pinMode(RELAY_2, OUTPUT);
@@ -36,32 +36,115 @@ void setup() {
 
   // midi begin
   MIDI.begin(MIDI_CHANNEL);
+  MIDI.setHandleProgramChange(handleProgramChange);
 }
 
 void loop() {
   MIDI.read();
-  
-  // put your main code here, to run repeatedly:
-  digitalWrite(RELAY_1, HIGH);
-  delay(500);
-  digitalWrite(RELAY_2, HIGH);
-  delay(500);
-  digitalWrite(RELAY_3, HIGH);
-  delay(500);
-  digitalWrite(RELAY_4, HIGH);
-  delay(500);
-  digitalWrite(RELAY_1, LOW);
-  delay(500);
-  digitalWrite(RELAY_2, LOW);
-  delay(500);
-  digitalWrite(RELAY_3, LOW);
-  delay(500);
-  digitalWrite(RELAY_4, LOW);
-  delay(500);
 }
 
 void handleProgramChange(byte channel, byte number)
 {
-  
+  switch(number)
+  {
+    case 1:
+      digitalWrite(RELAY_1, LOW);
+      digitalWrite(RELAY_2, LOW);
+      digitalWrite(RELAY_3, LOW);
+      digitalWrite(RELAY_4, LOW);
+      break;
+    case 2:
+      digitalWrite(RELAY_1, HIGH);
+      digitalWrite(RELAY_2, LOW);
+      digitalWrite(RELAY_3, LOW);
+      digitalWrite(RELAY_4, LOW);
+      break;
+    case 3:
+      digitalWrite(RELAY_1, LOW);
+      digitalWrite(RELAY_2, HIGH);
+      digitalWrite(RELAY_3, LOW);
+      digitalWrite(RELAY_4, LOW);
+      break;
+    case 4:
+      digitalWrite(RELAY_1, LOW);
+      digitalWrite(RELAY_2, LOW);
+      digitalWrite(RELAY_3, HIGH);
+      digitalWrite(RELAY_4, LOW);
+      break;
+    case 5:
+      digitalWrite(RELAY_1, LOW);
+      digitalWrite(RELAY_2, LOW);
+      digitalWrite(RELAY_3, LOW);
+      digitalWrite(RELAY_4, HIGH);
+      break;
+    case 6:
+      digitalWrite(RELAY_1, HIGH);
+      digitalWrite(RELAY_2, HIGH);
+      digitalWrite(RELAY_3, LOW);
+      digitalWrite(RELAY_4, LOW);
+      break;
+    case 7:
+      digitalWrite(RELAY_1, HIGH);
+      digitalWrite(RELAY_2, LOW);
+      digitalWrite(RELAY_3, HIGH);
+      digitalWrite(RELAY_4, LOW);
+      break;
+    case 8:
+      digitalWrite(RELAY_1, HIGH);
+      digitalWrite(RELAY_2, LOW);
+      digitalWrite(RELAY_3, LOW);
+      digitalWrite(RELAY_4, HIGH);
+      break;
+    case 9:
+      digitalWrite(RELAY_1, LOW);
+      digitalWrite(RELAY_2, HIGH);
+      digitalWrite(RELAY_3, HIGH);
+      digitalWrite(RELAY_4, LOW);
+      break;
+    case 10:
+      digitalWrite(RELAY_1, LOW);
+      digitalWrite(RELAY_2, HIGH);
+      digitalWrite(RELAY_3, LOW);
+      digitalWrite(RELAY_4, HIGH);
+      break;
+    case 11:
+      digitalWrite(RELAY_1, LOW);
+      digitalWrite(RELAY_2, LOW);
+      digitalWrite(RELAY_3, HIGH);
+      digitalWrite(RELAY_4, HIGH);
+      break;
+    case 12:
+      digitalWrite(RELAY_1, HIGH);
+      digitalWrite(RELAY_2, HIGH);
+      digitalWrite(RELAY_3, HIGH);
+      digitalWrite(RELAY_4, LOW);
+      break;
+    case 13:
+      digitalWrite(RELAY_1, HIGH);
+      digitalWrite(RELAY_2, HIGH);
+      digitalWrite(RELAY_3, LOW);
+      digitalWrite(RELAY_4, HIGH);
+      break;
+    case 14:
+      digitalWrite(RELAY_1, HIGH);
+      digitalWrite(RELAY_2, LOW);
+      digitalWrite(RELAY_3, HIGH);
+      digitalWrite(RELAY_4, HIGH);
+      break;
+    case 15:
+      digitalWrite(RELAY_1, LOW);
+      digitalWrite(RELAY_2, HIGH);
+      digitalWrite(RELAY_3, HIGH);
+      digitalWrite(RELAY_4, HIGH);
+      break;
+    case 16:
+      digitalWrite(RELAY_1, HIGH);
+      digitalWrite(RELAY_2, HIGH);
+      digitalWrite(RELAY_3, HIGH);
+      digitalWrite(RELAY_4, HIGH);
+      break;
+    default:
+      break;
+  }
 }
 
